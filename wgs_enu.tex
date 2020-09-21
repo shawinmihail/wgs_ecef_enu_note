@@ -56,7 +56,7 @@
 \section{Переход от ECEF к WGS}
 
 Обратное преобразование основано на численных методах
-[Osen K. Accurate Conversion of Earth-Fixed Earth-Centered Coordinates to Geodetic Coordinates. – 2017.]
+[Osen K. Accurate Conversion of Earth-Fixed Earth-Centered Coordinates to Geodetic Coordinates. – 2017.] На небольшом расстоянии от центра земли (порядка 50 км и меньше) данное преобразование не может быть выполнено, за что отвечает параметр $H_{min}$.
 \begin{align} 
 &w^2 = x^2 + y^2 \\
 &l = e^2 / 2 \\
@@ -65,7 +65,8 @@
 &p = (m + n - 4l^2) / 6 \\
 &G = mnl^2 \\&m = w^2 / a^2 \\
 &H = 2p^3 + G \\
-&if \\
+&H_{min} = e^ {12} / 4; \\
+&if H < H_{min}: \quad abort \\
 &C = \sqrt[3]{H + G + 2 \sqrt{HG}} / \sqrt[3]{2} \\
 &i = -(2l^2 + m + n) / 2 \\
 &P = p^2 \\
